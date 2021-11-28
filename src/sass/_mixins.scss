@@ -1,0 +1,18 @@
+@mixin flex($align-item, $jutify-content) {
+    display: flex;
+    align-items: $align-item;
+    justify-content: $jutify-content;
+}
+
+@mixin mobile {
+    @media only screen and (max-width: $mobile-width) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
+}
+

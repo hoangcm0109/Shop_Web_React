@@ -1,0 +1,137 @@
+.header {
+    background-color: $main-bg;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 98;
+    height: $header-height;
+    transition: height .3s ease;
+
+    @include tablet {
+        height: $header-tablet-height;
+        box-shadow: $box-shadow;
+    }
+
+    @include mobile {
+        height: $header-mobile-height;
+        box-shadow: $box-shadow;
+    }
+
+    .container {
+        height: 100%;
+    }
+
+    &.shrink {
+        height: $header-shrink-height;
+        box-shadow: $box-shadow;
+        z-index: 100;
+    }
+
+    &_logo {
+        @include flex(center, center);
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+
+        img {
+            height: 28px;
+        }
+    }
+
+    &_menu {
+        @include flex(center, space-between);
+        height: 100%;
+        font-size: 1.5rem;
+
+
+        &_item ~ &_item {
+            margin-left: 39px;
+
+            @include tablet {
+                margin-left: 20px;
+            }
+
+            @include mobile {
+                margin-left: 10px;
+            }
+        }
+
+        &_item.active {
+            font-weight: 600;
+            color: $main-color;
+        }
+
+        &_item:hover {
+            color: $main-color;
+        }
+
+        &_left, 
+        &_right {
+            @include flex(center, center);
+            height: 100%;
+        }
+
+        &_right {
+            font-size: 2.25rem;
+
+            &_item {
+                @include flex(center, center);
+            }
+
+            @include tablet {
+                margin-left: auto;
+            }
+
+            @include mobile {
+                font-size: 1.5rem;
+            }
+        }
+
+        &_left {
+            &_close {
+                display: none;
+            }
+
+            @include tablet {
+                flex-direction: column;
+                background-color: $main-bg;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100vh;
+                justify-content: flex-start;
+                padding-top: 30px;
+                transform: translateX(-100%);
+                transition: transform .5s ease;
+            
+                &.active {
+                    transform: translateX(0)
+                }
+
+                &_item ~ &_item {
+                    margin-left: unset;
+                    margin-top: 20px;
+                }
+                
+                &_close {
+                    display: block;
+                    position: absolute;
+                    left: 20px;
+                }
+
+            }
+        }
+
+        &_mobile-toggle {
+            display: none;
+
+            @include tablet {
+                display: block;
+                font-size: 2.5rem;
+            }
+        }
+    }
+    
+}
