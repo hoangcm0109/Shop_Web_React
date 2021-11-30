@@ -2,11 +2,33 @@
     @include flex(flex-start, flex-start);
     font-size: 1.5rem;
 
+    @include tablet {
+        flex-direction: column;
+    }
+
     &_filter {
         width: 20%;
 
         @include tablet {
-            width: unset;
+            width: max-content;
+            height: 100vh;
+            background-color: $main-bg;
+            padding: 1rem;
+            position: fixed;
+            left: 0;
+            top: $header-tablet-height;
+            z-index: 100;
+            box-shadow: $box-shadow;
+            transform: translateX(-100%);
+            transition: transform .3s ease;
+        }
+
+        @include mobile {
+            top: $header-mobile-height;
+        }
+
+        &.active {
+            transform: translateX(0);
         }
 
         &_widget {
@@ -27,9 +49,32 @@
                 }
             }
         }
+
+        &_close {
+            display: none;
+
+            @include tablet {
+                display: block;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+        }
     }
 
     &_content {
         flex-grow: 1;
+
+        @include tablet {
+            width: 100%;
+        }
+    }
+
+    &_filter_toggle {
+        display: none;
+
+        @include tablet {
+            display: block;
+            margin-bottom: 2rem;
+        }
     }
 }

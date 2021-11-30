@@ -1,10 +1,9 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 
 import Helmet from '../components/Helmet'
-import Grid from '../components/Grid'
-import ProductCard from '../components/ProductCard'
 import CheckBox from '../components/CheckBox'
 import Button from '../components/Button'
+import InfinityList from '../components/InfinityList'
 
 import productData from '../assets/fake-data/products'
 import category from '../assets/fake-data/category'
@@ -90,7 +89,7 @@ const Catalog = () => {
         [filter, setProducts]
     )
 
-    const clearFilter = (filter) => {
+    const clearFilter = () => {
         setFilter(initFilter)
         updateProduct()
     }
@@ -99,13 +98,20 @@ const Catalog = () => {
         updateProduct()
     }, [updateProduct])
 
+    const filterRef = useRef(null)
+
+    const showHideFilter = () => filterRef.current.classList.toggle('active')
+
     return (
         <Helmet title="Sản phẩm">
             {
                 console.log(filter)
             }
             <div className="catalog">
-                <div className="catalog_filter">
+                <div className="catalog_filter" ref={filterRef}>
+                    <div className="catalog_filter_close" onClick={showHideFilter}>
+                        <i className='bx bx-left-arrow-alt'></i>
+                    </div>
                     <div className="catalog_filter_widget">
                         <div className="catalog_filter_widget_title">
                             Danh mục sản phẩm
@@ -174,27 +180,13 @@ const Catalog = () => {
                         </div>
                     </div>
                 </div>
+                <div className="catalog_filter_toggle">
+                    <Button size="sm" onClick={() => showHideFilter()}>Bộ lọc</Button>
+                </div>
                 <div className="catalog_content">
-                    <Grid
-                        col={3}
-                        mdCol={2}
-                        smCol={1}
-                        gap={20}
-                    >
-                        {
-                            products.map((item, index) => (
-                                <ProductCard
-                                    key={index}
-                                    img01={item.image01}
-                                    img02={item.image02}
-                                    name={item.title}
-                                    price={item.price}
-                                    slug={item.slug}
-                                />
-                            ))
-                        }
-
-                    </Grid>
+                    <InfinityList 
+                        data={products}
+                    />
                 </div>
             </div>
         </Helmet>

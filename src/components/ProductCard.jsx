@@ -21,17 +21,17 @@ const ProductCard = props => {
                         <del>{numberWithCommas(390000)}</del>
                     </span>
                 </div>
-
-                <div className="product-card_btn">
-                    <Button 
-                        size="sm"
-                        icon="bx bx-cart"
-                        animate={true}
-                        >
-                        Chọn mua
-                    </Button>
-                </div>
             </Link>
+
+            <div className="product-card_btn">
+                <Button 
+                    size="sm"
+                    icon="bx bx-cart"
+                    animate={true}
+                    >
+                    Chọn mua
+                </Button>
+            </div>
         </div>
     )
 }
