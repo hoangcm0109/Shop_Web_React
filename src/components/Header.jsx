@@ -52,11 +52,11 @@ const Header = () => {
     return (
         <div className="header" ref={headerRef}>
             <div className="container">
-                <div className="header_logo">
-                    <Link to="/">
+                <Link to="/catalog">
+                    <div className="header_logo">
                         <img src={logo} alt="#" />
-                    </Link>
-                </div>
+                    </div>
+                </Link>
                 <div className="header_menu">
                     <div className="header_menu_mobile-toggle" onClick={menuToggle}>
                         <i className='bx bx-menu'></i>

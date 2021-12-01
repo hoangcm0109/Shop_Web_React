@@ -1,11 +1,22 @@
 .product {
     @include flex(flex-start, flex-start);
 
+    @include mobile {
+        flex-direction: column;
+    }
+
     &_images {
         @include flex(flex-start, flex-start);
-
         width: 60%;
         flex-wrap: wrap;
+
+        @include tablet {
+            width: 80%;
+        }
+
+        @include tablet {
+            width: 100%;
+        }
 
         &_list {
             width: 20%;
@@ -35,6 +46,10 @@
         height: 400px;
         overflow: hidden;
         position: relative;
+
+        @include mobile {
+            display: none;
+        }
 
         &.expand {
             height: max-content;
@@ -99,6 +114,11 @@
                 cursor: pointer;
                 margin-right: 1rem;
 
+                @include mobile {
+                    width: 40px;
+                    height: 40px;
+                }
+
                 &.active {
                     border-color: $txt-white;
                     background-color: $main-color;
@@ -113,6 +133,11 @@
                     width: 40px;
                     height: 40px;
                     border-radius: 50%;
+
+                    @include mobile {
+                        width: 30px;
+                        height: 30px;
+                    }
                 }
 
                 &_size {
