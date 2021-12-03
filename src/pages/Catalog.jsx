@@ -105,7 +105,7 @@ const Catalog = () => {
     return (
         <Helmet title="Sản phẩm">
             {
-                console.log(filter)
+                // console.log(filter)
             }
             <div className="catalog">
                 <div className="catalog_filter" ref={filterRef}>

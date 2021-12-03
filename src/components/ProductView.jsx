@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
+import { useDispatch } from 'react-redux'
+
+import { addItem } from '../redux/shopping-cart/cartItemSlice'
+import { remove } from '../redux/product-modal/productModalSlice'
+
 import { useNavigate } from 'react-router-dom'
 
 import Button from './Button'
@@ -8,7 +13,18 @@ import numberWithCommas from '../utils/numberWithCommas'
 
 const ProductView = props => {
 
-    const product = props.product
+    const dispatch = useDispatch()
+
+    let product = props.product
+
+    if(product === undefined) {
+        product = {
+            price: 0,
+            title: '',
+            colors: [],
+            size: []
+        }
+    }
 
     const [previewImg, setPreviewImg] = useState(product.image01)
 
@@ -51,11 +67,29 @@ const ProductView = props => {
     }
 
     const addToCart = () => {
-        if(check()) console.log({color, size, quantity})
+        if(check()) {
+            dispatch(addItem({
+                slug: product.slug,
+                color: color,
+                size: size,
+                quantity: quantity,
+                price: product.price,
+            }))
+        }
     }
     
     const goToCart = () => {
-        if(check()) navigate('/cart')
+        if(check()) {
+            dispatch(addItem({
+                slug: product.slug,
+                color: color,
+                size: size,
+                quantity: quantity,
+                price: product.price,
+            }))
+            navigate('/cart')
+            dispatch(remove())
+        }
     }
 
     return (
@@ -150,13 +184,14 @@ const ProductView = props => {
                     <Button onClick={() => addToCart()}>Thêm vào giỏ hàng</Button>
                     <Button onClick={() => goToCart()}>Mua ngay</Button>
                 </div>
+                
             </div>
         </div>
     )
 }
 
 ProductView.propTypes = {
-    product: PropTypes.object.isRequired
+    product: PropTypes.object
 }
 
 export default ProductView
