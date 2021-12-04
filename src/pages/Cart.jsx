@@ -14,7 +14,7 @@ const Cart = () => {
 
     const cartItems = useSelector(state => state.cartItems.value)
 
-    console.log(cartItems);
+    // console.log(cartItems);
 
     const [ cartProducts, setCartProducts ] = useState([])
 

@@ -75,6 +75,9 @@ const ProductView = props => {
                 quantity: quantity,
                 price: product.price,
             }))
+
+            alert('Add to cart success')
+            dispatch(remove())
         }
     }
     
