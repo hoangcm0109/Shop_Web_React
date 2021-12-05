@@ -1,5 +1,7 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { Link, useLocation  } from 'react-router-dom'
+
+import { useSelector } from 'react-redux'
 
 import logo from '../assets/images/Logo-2.png'
 
@@ -49,6 +51,14 @@ const Header = () => {
 
     const menuToggle = () => menuLeft.current.classList.toggle('active')
 
+    const products = useSelector(state => state.cartItems.value)
+
+    const [quantity, setQuantity] = useState(null)
+
+    useEffect(() => {
+        setQuantity(products.length)
+    }, [products])
+
     return (
         <div className="header" ref={headerRef}>
             <div className="container">
@@ -90,6 +100,7 @@ const Header = () => {
                                 <i className='bx bx-shopping-bag' ></i>
                             </Link>
                         </div>
+                        { quantity === 0 ? '' : <span>{quantity}</span> }
                         <div className="header_menu_item header_menu_right_item">
                             <i className='bx bx-user' ></i>
                         </div>

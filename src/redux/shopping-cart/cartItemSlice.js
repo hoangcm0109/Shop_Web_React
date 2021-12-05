@@ -5,13 +5,14 @@ const items = localStorage.getItem('cartItems') !== null ? JSON.parse(localStora
 const initialState = {
     value: items
 }
-console.log(initialState.value.length)
+// console.log(initialState.value.length)
 export const cartItemSlice = createSlice({
     name: 'cartItems',
     initialState,
     reducers: {
         addItem: (state, action) => {
             const newItem = action.payload
+            console.log(state.value);
 
             const duplicate = findItem(state.value, newItem)
 
@@ -19,6 +20,7 @@ export const cartItemSlice = createSlice({
                 state.value = delItem(state.value, newItem)
 
                 state.value = [...state.value, {
+                    ...newItem,
                     id: duplicate[0].id,
                     quantity: newItem.quantity + duplicate[0].quantity
                 }]

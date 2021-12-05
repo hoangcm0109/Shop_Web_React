@@ -79,6 +79,18 @@
                 @include flex(center, center);
             }
 
+            span {
+                position: relative;
+                top: 0;
+                @include flex(center, center);
+                font-size: 1.25rem;
+                color: $txt-white;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background-color: red;
+            }
+
             @include tablet {
                 margin-left: auto;
             }

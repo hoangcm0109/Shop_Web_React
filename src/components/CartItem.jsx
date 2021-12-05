@@ -13,7 +13,7 @@ const CartItem = props => {
 
     const [ item, setItem ] = useState(props.item)
 
-    // console.log(item);
+    console.log(item);
 
     const [ quantity, setQuantity ] = useState(props.item.quantity)
 
@@ -50,7 +50,7 @@ const CartItem = props => {
                     </Link>
                 </div>
                 <div className="cart_item_info_name">
-                    {numberWithCommas(item.price)}
+                    {numberWithCommas(Number(item.price))}
                 </div>
                 <div className="cart_item_info_quantity">
                     <div className="product_info_item_quantity">
